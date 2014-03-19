@@ -7,9 +7,10 @@ install_package git vim-nox tmux python-dev python3 python3-dev
 install_package vnstat iotop iftop htop
 
 # Backports building
-install_package devscripts build-essential debian-keyring
+install_package devscripts build-essential debian-keyring debconf-utils
 
 # Percona
+percona_preinst
 install_package percona-server-server-5.6
 percona_postinst
 

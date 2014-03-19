@@ -11,5 +11,6 @@ log_action_begin_msg "Installing innotop"
 
 wget -q $INNOTOP_URL &>> $LOG_DEST
 alien -i $INNOTOP_FILE &>> $LOG_DEST
+rm $INNOTOP_FILE
 
 log_action_end_msg $?

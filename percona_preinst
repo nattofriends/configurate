@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+log_action_begin_msg "Seeding Percona Server configuration"
+
+cat private/percona | debconf-set-selections &>> $LOG_DEST
+
+log_action_end_msg $?
