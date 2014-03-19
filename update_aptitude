@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+log_action_begin_msg "Updating package lists"
+
+aptitude update &>> $LOG_DEST
+
+log_action_end_msg $?

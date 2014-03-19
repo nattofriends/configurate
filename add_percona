@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+RELEASE=$(lsb_release -sc)
+
+log_action_begin_msg "Retrieving Percona signing key"
+apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A &>> $LOG_DEST
+log_action_end_msg $?
+
+log_action_begin_msg "Adding entry to sources.list"
+echo "deb http://repo.percona.com/apt $RELEASE main" > /etc/apt/sources.list.d/percona.list
+log_action_end_msg $?

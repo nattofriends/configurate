@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# LSB is wonky
+export TERM=xterm
+export LOG_DEST=bootstrap_$(date +%Y%m%d%H%M).log
+
+RUNLIST=runlist.txt
+
+. /lib/lsb/init-functions
+
+log_action_msg "kotori bootstrapping script"
+echo
+
+echo "kotori bootstrapping script" > $LOG_DEST
+date >> $LOG_DEST
+echo "====================" >> $LOG_DEST
+echo >> $LOG_DEST
+
+while read -r module; do
+    [[ $module = \#* || -z $module ]] && continue
+
+    log_action_msg "Running module $module"
+    echo "Running module $module" >> $LOG_DEST
+    echo "====================" >> $LOG_DEST
+    bash $module
+    echo >> $LOG_DEST
+done < $RUNLIST
+
+log_action_msg "Module output available at $LOG_DEST"

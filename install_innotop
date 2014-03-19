@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+INNOTOP_FILE="innotop-1.9.1-1.el6.noarch.rpm"
+INNOTOP_URL="https://innotop.googlecode.com/files/$INNOTOP_FILE"
+
+log_action_begin_msg "Installing innotop"
+
+wget -q $INNOTOP_URL &>> $LOG_DEST
+alien -i $INNOTOP_FILE &>> $LOG_DEST
+
+log_action_end_msg $?

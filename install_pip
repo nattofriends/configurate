@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+PIP_URL="https://raw.github.com/pypa/pip/master/contrib/get-pip.py"
+
+log_action_begin_msg "Installing pip"
+
+wget -qO- $PIP_URL | python &>> $LOG_DEST
+wget -qO- $PIP_URL | python3 &>> $LOG_DEST
+
+log_action_end_msg $?

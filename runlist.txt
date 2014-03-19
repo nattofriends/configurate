@@ -1,0 +1,30 @@
+# Module runlist
+
+add_percona
+update_aptitude
+
+install_package git vim-nox tmux python-dev python3 python3-dev
+install_package vnstat iotop iftop htop
+
+# Backports building
+install_package devscripts build-essential debian-keyring
+
+# Percona
+install_package percona-server-server-5.6
+percona_postinst
+
+# Innotop
+install_package alien libterm-readkey-perl
+install_innotop
+
+# Sphinx
+install_package sphinxsearch
+
+# Application dependencies
+install_package fcgiwrap gnuplot-nox
+install_package perl
+
+# Application dependencies
+install_package pperl libcaptcha-recaptcha-perl libdatetime-perl libdatetime-timezone-perl libnet-ip-perl libproc-daemon-perl libwww-perl libdbi-perl libdbd-mysql-perl
+
+install_pip

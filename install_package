@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+PACKAGES="$@"
+
+log_action_begin_msg "Installing packages: $PACKAGES"
+
+aptitude install -y $PACKAGES &>> $LOG_DEST
+
+log_action_end_msg $?
