@@ -7,5 +7,6 @@ set -e
 log_action_begin_msg "Updating package lists"
 
 aptitude update &>> $LOG_DEST
+aptitude upgrade -y &>> $LOG_DEST
 
 log_action_end_msg $?
