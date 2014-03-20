@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+PERLBREW_URL="http://install.perlbrew.pl"
+
+log_action_begin_msg "Installing perlbrew"
+
+\curl -L $PERLBREW_URL 2>> $LOG_DEST | bash &>> $LOG_DEST
+
+log_action_end_msg $?

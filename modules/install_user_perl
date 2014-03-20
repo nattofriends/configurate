@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+source ~/perl5/perlbrew/etc/bashrc
+
+VERSION=$1
+ALIAS=$2
+
+log_action_begin_msg "Installing Perl $ALIAS"
+
+perlbrew install $VERSION \
+    --thread \
+    --64all \
+    --notest \
+    -Duselargefiles \
+    -Dcccdlflags=-fPIC \
+    -Doptimize=-O2 \
+    -Dccflags=-DDEBIAN \
+    --as $ALIAS &>> $LOG_DEST
+
+log_action_end_msg $?
