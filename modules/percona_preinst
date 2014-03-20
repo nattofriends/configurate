@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# We run under the assumption that the database will be restored from backup anyway.
+
 set -e
 
 . /lib/lsb/init-functions
 
 log_action_begin_msg "Seeding Percona Server configuration"
 
-cat private/percona | debconf-set-selections &>> $LOG_DEST
+echo "percona-server-server-5.6       percona-server-server/root_password     password        password" | debconf-set-selections &>> $LOG_DEST
+echo "percona-server-server-5.6       percona-server-server/root_password_again     password        password" | debconf-set-selections &>> $LOG_DEST
 
 log_action_end_msg $?
