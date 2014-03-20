@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+source ~/perl5/perlbrew/etc/bashrc
+
+PERL=$1
+
+log_action_begin_msg "Switching to Perl $PERL"
+
+perlbrew switch $PERL &>> $LOG_DEST
+
+log_action_end_msg $?

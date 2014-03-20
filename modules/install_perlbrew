@@ -10,4 +10,8 @@ log_action_begin_msg "Installing perlbrew"
 
 \curl -L $PERLBREW_URL 2>> $LOG_DEST | bash &>> $LOG_DEST
 
+source ~/perl5/perlbrew/etc/bashrc
+
+perlbrew install-cpanm
+
 log_action_end_msg $?
