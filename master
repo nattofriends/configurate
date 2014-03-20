@@ -4,7 +4,7 @@
 export TERM=xterm
 export LOG_DEST=bootstrap_$(date +%Y%m%d%H%M).log
 
-RUNLIST=runlist.txt
+RUNLIST=Runfile
 
 . /lib/lsb/init-functions
 
@@ -22,7 +22,7 @@ while read -r module; do
     log_action_msg "Running module $module"
     echo "Running module $module" >> $LOG_DEST
     echo "====================" >> $LOG_DEST
-    bash $module
+    bash modules/$module
     echo >> $LOG_DEST
 done < $RUNLIST
 
