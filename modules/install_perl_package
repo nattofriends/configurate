@@ -10,6 +10,6 @@ PACKAGES="$@"
 
 log_action_begin_msg "Installing packages: $PACKAGES"
 
-cpanm $PACKAGES &>> $LOG_DEST
+cpanm --notest $PACKAGES &>> $LOG_DEST
 
 log_action_end_msg $?
