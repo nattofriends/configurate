@@ -6,12 +6,29 @@ export LOG_DEST=bootstrap_$(date +%Y%m%d%H%M).log
 
 . /lib/lsb/init-functions
 
-log_action_msg "kotori bootstrapping script"
+log_action_msg "configurate starting..."
 echo
 
 if [[ -z $1 ]]; then
   log_failure_msg "No Runfile provided"
   exit -1
+fi
+
+if [[ $1 == "interactive" ]]; then
+  shift
+  if [[ -z $* ]]; then
+    log_failure_msg "No interactive commands provided"
+    exit -1
+  fi
+
+  module=$*
+  log_action_msg "Running module $module"
+  echo "Running module $module" >> $LOG_DEST
+  echo "====================" >> $LOG_DEST
+  bash modules/$module
+
+  log_action_msg "Module output available at $LOG_DEST"
+  exit
 fi
 
 RUNLIST=$1
