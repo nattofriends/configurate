@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set_locale:  set the locale and timezone
+# set_locale: set the locale and timezone
 
 set -e
 
