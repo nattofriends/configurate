@@ -2,12 +2,13 @@
 
 # LSB is wonky with Debian
 export TERM=xterm
-export LOG_DEST=bootstrap_$(date +%Y%m%d%H%M).log
+export LOG_DEST=$(mktemp -t configurate_$(date +%Y%m%d%H%M)_XXXX.log)
 
 . /lib/lsb/init-functions
 
 log_action_msg "configurate starting..."
 echo
+
 
 if [[ -z $1 ]]; then
   log_failure_msg "No Runfile provided"
@@ -33,7 +34,9 @@ fi
 
 RUNLIST=$1
 
-echo "kotori bootstrapping script" > $LOG_DEST
+log_action_msg "Module output available at $LOG_DEST"
+
+echo "configurate" > $LOG_DEST
 date >> $LOG_DEST
 echo "====================" >> $LOG_DEST
 echo >> $LOG_DEST
@@ -48,4 +51,3 @@ while read -r module; do
     echo >> $LOG_DEST
 done < $RUNLIST
 
-log_action_msg "Module output available at $LOG_DEST"

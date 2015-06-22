@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# set_locale:  set the locale and timezone
+
+set -e
+
+. /lib/lsb/init-functions
+
+log_action_begin_msg "Setting locale and timezone"
+
+if [[ $# -ne 2 ]]; then
+    log_failure_msg
+    log_action_msg "Incorrect arguments"
+    log_action_end_msg 1
+    exit
+fi
+
+timezone=$1
+locale=$2
+
+echo "$timezone" > /etc/timezone
+dpkg-reconfigure --frontend=noninteractive tzdata &>> $LOG_DEST
+
+echo "LANG=$locale" > /etc/default/locale
+locale-gen &>> $LOG_DEST
+dpkg-reconfigure --frontend=noninteractive locales &>> $LOG_DEST
+
+log_action_end_msg $?
