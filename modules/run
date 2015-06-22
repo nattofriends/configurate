@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# run: run an arbitrary command
+# For those days when you just gotta run random commands.
+
+set -e
+
+. /lib/lsb/init-functions
+
+log_action_begin_msg "Running $@"
+
+if [[ $# -eq 0 ]]; then
+    log_failure_msg
+    log_action_msg "No command provided"
+    exit
+fi
+
+$@ &>> $LOG_DEST
+
+log_action_end_msg $?
