@@ -51,3 +51,6 @@ while read -r module; do
     echo >> $LOG_DEST
 done < $RUNLIST
 
+echo "====================" >> $LOG_DEST
+echo "End of log"
+
