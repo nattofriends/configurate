@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+PACKAGES="$@"
+
+log_action_begin_msg "Setting package configuration: $@"
+
+debconf-set-selections <<< "$@"
+
+log_action_end_msg $?
