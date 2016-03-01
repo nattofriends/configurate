@@ -8,6 +8,6 @@ PACKAGES="$@"
 
 log_action_begin_msg "Installing packages: $PACKAGES"
 
-DEBIAN_FRONTEND=noninteractive aptitude install -y $PACKAGES &>> $LOG_DEST
+DEBIAN_FRONTEND=noninteractive apt-get install -y $PACKAGES &>> $LOG_DEST
 
 log_action_end_msg $?

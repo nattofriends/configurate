@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+. /lib/lsb/init-functions
+
+PPA=$@
+
+log_action_begin_msg "Installing PPA: $PPA"
+
+add-apt-repository -y ppa:$PPA &>> $LOG_DEST
+
+log_action_end_msg $?
